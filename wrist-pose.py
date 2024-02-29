@@ -8,6 +8,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
+print(mp_pose.PoseLandmark.LEFT_WRIST)
 
 cap = cv2.VideoCapture(0)
 while cap.isOpened():
@@ -22,6 +23,7 @@ while cap.isOpened():
 		# process the frame for pose detection
 		pose_results = pose.process(frame_rgb)
 		print(pose_results.pose_world_landmarks)
+		# print(pose_results.pose_world_landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].z)
 
 		# draw skeleton on the frame
 		mp_drawing.draw_landmarks(frame, pose_results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
